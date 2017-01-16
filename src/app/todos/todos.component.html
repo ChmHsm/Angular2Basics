@@ -56,10 +56,20 @@
 </div>
 
 <div class="col-lg-6">
-<h3>Projects list</h3>
-<ul class="list-group">
-  <li *ngFor="let project of projects" class="list-group-item">
-    <span (click)='editproject(project)'>{{project.name}}</span> <button class="btn btn-danger btn-sm" (click)="deleteproject(project.name)">X</button>
-  </li>
-</ul>
+  <h3>Projects list</h3>
+  <div class="panel-group">
+  <div *ngFor="let project of projects; let i = index" class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" [attr.href]="'#accordion'+i">
+        {{project.name}}</a> <button class="btn btn-primary btn-sm" (click)="editproject(project)">Edit</button> <button class="btn btn-danger btn-sm" (click)="deleteproject(project.name)">Delete</button>
+      </h4>
+    </div>
+    <div [attr.id]="'accordion'+i" class="panel-collapse collapse">
+      <div class="panel-body">Design cost: {{project.designCost}}</div>
+    </div>
+  </div>
+</div> 
 </div>
+
+ 
