@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Init } from './init-todos';
+import { Init } from './init-projects';
 
 @Injectable()
 export class TodoService extends Init{
@@ -10,8 +10,8 @@ export class TodoService extends Init{
     this.load();
   }
 
-  getTodos(){
-    return JSON.parse(localStorage.getItem('todos'));
+  getProjects(){
+    return JSON.parse(localStorage.getItem('projects'));
   }
 
 }

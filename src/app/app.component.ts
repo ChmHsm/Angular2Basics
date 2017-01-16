@@ -7,5 +7,5 @@ import { TodosComponent } from './todos/todos.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Angular 2 Basics';
 }

@@ -8,8 +8,11 @@ import { TodoService } from '../todo.service';
 })
 
 export class TodosComponent implements OnInit {
-  todos;
-  text;
+  projects;
+  projectName;
+  constructionCost;
+  designCost;
+  projectType;
   oldText;
   appState = 'default';
   
@@ -17,41 +20,50 @@ export class TodosComponent implements OnInit {
   constructor(private _todoService: TodoService) { }
 
   ngOnInit() {
-    this.todos = this._todoService.getTodos();
+    this.projects = this._todoService.getProjects();
+    console.log(this.projects);
   }
 
-  addTodo(){
+  addproject(){
     //console.log(this.text);
-    var newTodo = {
-      text: this.text
-    };
-    this.todos.push(newTodo);
-    this._todoService.addTodo(newTodo);
+    var newproject = {
+                    name: this.projectName, 
+                    type: this.projectType,
+                    designCost: this.designCost,
+                    constructionCost: this.constructionCost
+                }
+    console.log(this.projectName +this.designCost +this.constructionCost +this.projectType);
+    this.projects.push(newproject);
+    this._todoService.addProject(newproject);
     //console.log(this.text);
-    this.text= '';
+    this.projectName= '';
+    this.constructionCost= '';
+    this.designCost= '';
+    this.projectType= '';
   }
 
-  deleteTodo(todoText){
-    for(var i = 0 ; i < this.todos.length ; i++){
-      if(this.todos[i].text == todoText){
-        this.todos.splice(i, 1);
+  deleteproject(projectName){
+    console.log('Project to be deleted: '+projectName);
+    for(var i = 0 ; i < this.projects.length ; i++){
+      if(this.projects[i].name == projectName){
+        this.projects.splice(i, 1);
       }
     }
-    this._todoService.deleteTodo(todoText);
+    this._todoService.deleteProject(projectName);
   }
 
-  editTodo(todo){
+  editproject(project){
     if(this.appState != 'edit'){
       
       this.appState = 'edit';
-      this.oldText = todo.text;
-      this.text = todo.text;
+      this.oldText = project.name;
+      this.projectName = project.name;
       //console.log('appstate: ' +this.appState);
     }
   }
 
-  updateTodo(){
-    this.deleteTodo(this.oldText);
-    this.addTodo();
+  updateproject(){
+    this.deleteproject(this.oldText);
+    this.addproject();
   }
 }
