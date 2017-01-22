@@ -8,3 +8,6 @@ What's this project for?
 - Providing useful blocks of angular 2 code,
 - Will focus on UX and UI,
 - Might eventually communicate with a web service.
+
+# Screenshots:
+![alt tag](https://cloud.githubusercontent.com/assets/12183061/22178749/e571526a-e037-11e6-959d-79958d357edc.jpg)
