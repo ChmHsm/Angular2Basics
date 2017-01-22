@@ -1,79 +1,116 @@
-<div *ngIf="appState == 'default'">
-<div class="col-lg-6">
-  <h3>Add an item to the projects list</h3>
-  <form class="form-horizontal" (submit)="addproject()">
-  <fieldset>
-    <legend>New project</legend>
-    <div class="form-group">
-      <label class="col-lg-3 control-label">Project name</label>
-      <div class="col-lg-9">
-        <input #newproject class="form-control" type="text" name="projectName" [(ngModel)]="projectName">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-3 control-label">Design cost</label>
-      <div class="col-lg-9">
-        <input #newproject class="form-control" type="text" name="designCost" [(ngModel)]="designCost">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-3 control-label">Construction cost</label>
-      <div class="col-lg-9">
-        <input #newproject class="form-control" type="text" name="constructionCost" [(ngModel)]="constructionCost">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-lg-3 control-label">Project type</label>
-      <div class="col-lg-9">
-        <select class="form-control" name="projectType" [(ngModel)]="projectType">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
+<div>
+  <div class="col-lg-6">
+    <div *ngIf="appState == 'defaultMode'">
+      <h3>Add an item to the projects list</h3>
+      <form class="form-horizontal" (submit)="addproject()">
+        <fieldset>
+          <legend>New project</legend>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Project name</label>
+            <div class="col-lg-9">
+              <input #newproject class="form-control" type="text" name="projectName" [(ngModel)]="projectName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Design cost</label>
+            <div class="col-lg-9">
+              <input #newproject class="form-control" type="text" name="designCost" [(ngModel)]="designCost">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Construction cost</label>
+            <div class="col-lg-9">
+              <input #newproject class="form-control" type="text" name="constructionCost" [(ngModel)]="constructionCost">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Project type</label>
+            <div class="col-lg-9">
+              <select class="form-control" name="projectType" [(ngModel)]="projectType">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
         </select>
-        <br>
-      </div>
+              <br>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="reset" class="btn btn-default">Cancel</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
     </div>
-    <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
+    <div *ngIf="appState == 'editMode'">
+      <h3>Add an item to the projects list</h3>
+      <form class="form-horizontal" (submit)="updateproject()" (cancel)="cancelEditMode()">
+        <fieldset>
+          <legend>Edit project</legend>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Project name</label>
+            <div class="col-lg-9">
+              <input #newproject class="form-control" type="text" name="projectName" [(ngModel)]="projectName">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Design cost</label>
+            <div class="col-lg-9">
+              <input #newproject class="form-control" type="text" name="designCost" [(ngModel)]="designCost">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Construction cost</label>
+            <div class="col-lg-9">
+              <input #newproject class="form-control" type="text" name="constructionCost" [(ngModel)]="constructionCost">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Project type</label>
+            <div class="col-lg-9">
+              <select class="form-control" name="projectType" [(ngModel)]="projectType">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
+        </select>
+              <br>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="reset" class="btn btn-default" (click)="cancelEditMode()">Cancel</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
     </div>
-  </fieldset>
-</form>
-
-</div>
+  </div>
 </div>
 
-
-<div *ngIf="appState == 'edit'">
-<div class="col-lg-6">
-  <h3>Edit a project</h3>
-<form (submit)="updateproject()">
-  <input #newproject class="form-control" type="text" name="text" [(ngModel)]="text">
-</form>
-</div>
-</div>
 
 <div class="col-lg-6">
   <h3>Projects list</h3>
   <div class="panel-group">
-  <div *ngFor="let project of projects; let i = index" class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" [attr.href]="'#accordion'+i">
-        {{project.name}}</a> <button class="btn btn-primary btn-sm" (click)="editproject(project)">Edit</button> <button class="btn btn-danger btn-sm" (click)="deleteproject(project.name)">Delete</button>
-      </h4>
-    </div>
-    <div [attr.id]="'accordion'+i" class="panel-collapse collapse">
-      <div class="panel-body">
-        <p>Design cost: {{project.designCost}}</p>
-        <p>Construction cost: {{project.constructionCost}}</p>
-        <p>Project type: {{project.type}}</p>
+    <div *ngFor="let project of projects; let i = index" class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" [attr.href]="'#accordion'+i">
+        {{project.name}}</a>
+        <div class="pull-right">
+        <button class="btn btn-primary btn-sm" (click)="editproject(project)">Edit</button>
+        <button class="btn btn-danger btn-sm" (click)="deleteproject(project.name)">Delete</button>
         </div>
+        </h4>
+      </div>
+      <div [attr.id]="'accordion'+i" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>Design cost: {{project.designCost}}</p>
+          <p>Construction cost: {{project.constructionCost}}</p>
+          <p>Project type: {{project.type}}</p>
+        </div>
+      </div>
     </div>
   </div>
-</div> 
 </div>
-
- 
