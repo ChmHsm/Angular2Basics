@@ -1,3 +1,4 @@
+<div class="row">
 <div>
   <div class="col-lg-6">
     <div *ngIf="appState == 'defaultMode'">
@@ -91,9 +92,11 @@
 
 
 <div class="col-lg-6">
-  <h3>Projects list</h3>
+  <h3>Displayed list</h3>
+  <legend>Projects list</legend>
   <div class="panel-group">
-    <div *ngFor="let project of projects; let i = index" class="panel panel-default">
+    <div *ngFor="let project of projects | paginate: { itemsPerPage: 5, currentPage: projectsListPage, id: 'projectsList' }; let i = index" 
+    class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" [attr.href]="'#accordion'+i">
@@ -113,4 +116,36 @@
       </div>
     </div>
   </div>
+  <div class="has-text-centered">
+  <pagination-controls (pageChange)="projectsListPage = $event" id = "projectsList"></pagination-controls>
+  </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-12">
+  <h3>Web service interactions</h3>
+  <legend>Getting 100 instances from WS</legend>
+  <div class="panel-group">
+    <div *ngFor="let post of allPosts | paginate: { itemsPerPage: 10, currentPage: wsListPage, id: 'wsList' }; let j = index"
+     class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" [attr.href]="'#postAccordion'+j">
+        {{post.title}}</a>
+        </h4>
+      </div>
+      <div [attr.id]="'postAccordion'+j" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>Post id: {{post.id}}</p>
+          <p>Post body: {{post.body}}</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="has-text-centered">
+  <pagination-controls (pageChange)="wsListPage = $event" id = "wsList"></pagination-controls>
+  </div>
+</div>
 </div>
