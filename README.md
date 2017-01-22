@@ -10,4 +10,4 @@ What's this project for?
 - Might eventually communicate with a web service.
 
 # Screenshots:
-![alt tag](https://cloud.githubusercontent.com/assets/12183061/22178749/e571526a-e037-11e6-959d-79958d357edc.jpg)
+![alt tag](https://cloud.githubusercontent.com/assets/12183061/22186666/4efab1ea-e0f1-11e6-886d-4a464257095c.jpg)
