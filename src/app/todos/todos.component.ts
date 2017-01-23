@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { TodoService } from '../todo.service';
 import { PostsService } from '../posts.service';
 
@@ -23,14 +23,14 @@ export class TodosComponent implements OnInit {
 
 
   //text2 = 'text2';
-  constructor(private _todoService: TodoService, private _postsService: PostsService) { }
+  constructor(private _todoService: TodoService, private _postsService: PostsService, private ngZone: NgZone) { }
 
   ngOnInit() {
     this.projects = this._todoService.getProjects();
-    this._postsService.getAllPosts().subscribe(posts => {
-      this.allPosts = posts;
-      //TODO: process allPosts and display them in UI
-    });
+    this.ngZone.runOutsideAngular(() => {
+      this._postsService.getAllPosts().subscribe(posts => this.ngZone.run(() =>
+      { this.allPosts = posts; }));
+    })
   }
 
   addproject() {
