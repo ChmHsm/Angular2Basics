@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 export class PostsService {
 
   private allPostsUrl = 'https://jsonplaceholder.typicode.com/posts';
+  private postByIdUrl = 'https://jsonplaceholder.typicode.com/posts/';
 
   constructor(private http: Http) {
     console.log('Posts service intialized...');
@@ -15,6 +16,12 @@ export class PostsService {
 getAllPosts(){
   
      return this.http.get(this.allPostsUrl)
+               .map(this.extractData);
+   }
+
+   getPostById(id: string){
+  
+     return this.http.get(this.postByIdUrl+id)
                .map(this.extractData);
    }
 

@@ -19,6 +19,7 @@ export class TodosComponent implements OnInit {
 
   /////////////////////////POSTS attributes
   allPosts: Post[];
+  specificPostById: Post;
 
 
 
@@ -87,6 +88,14 @@ export class TodosComponent implements OnInit {
     this.designCost = '';
     this.constructionCost = '';
     this.projectType = '';
+  }
+
+  getPostById(){
+    this.ngZone.runOutsideAngular(() => {
+      this._postsService.getPostById('1').subscribe(post => this.ngZone.run(() =>
+      { this.specificPostById = post; 
+        console.log(this.specificPostById)}));
+    })
   }
 }
 

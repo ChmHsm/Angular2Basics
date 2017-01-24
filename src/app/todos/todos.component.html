@@ -1,151 +1,212 @@
 <div class="row">
-<div>
+  <div>
+    <div class="col-lg-6">
+      <div *ngIf="appState == 'defaultMode'">
+        <h3>Add an item to the projects list</h3>
+        <form class="form-horizontal" (submit)="addproject()">
+          <fieldset>
+            <legend>New project</legend>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Project name</label>
+              <div class="col-lg-9">
+                <input #newproject class="form-control" type="text" name="projectName" [(ngModel)]="projectName">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Design cost</label>
+              <div class="col-lg-9">
+                <input #newproject class="form-control" type="text" name="designCost" [(ngModel)]="designCost">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Construction cost</label>
+              <div class="col-lg-9">
+                <input #newproject class="form-control" type="text" name="constructionCost" [(ngModel)]="constructionCost">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Project type</label>
+              <div class="col-lg-9">
+                <select class="form-control" name="projectType" [(ngModel)]="projectType">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
+        </select>
+                <br>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div *ngIf="appState == 'editMode'">
+        <h3>Add an item to the projects list</h3>
+        <form class="form-horizontal" (submit)="updateproject()" (cancel)="cancelEditMode()">
+          <fieldset>
+            <legend>Edit project</legend>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Project name</label>
+              <div class="col-lg-9">
+                <input #newproject class="form-control" type="text" name="projectName" [(ngModel)]="projectName">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Design cost</label>
+              <div class="col-lg-9">
+                <input #newproject class="form-control" type="text" name="designCost" [(ngModel)]="designCost">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Construction cost</label>
+              <div class="col-lg-9">
+                <input #newproject class="form-control" type="text" name="constructionCost" [(ngModel)]="constructionCost">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-3 control-label">Project type</label>
+              <div class="col-lg-9">
+                <select class="form-control" name="projectType" [(ngModel)]="projectType">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
+        </select>
+                <br>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-default" (click)="cancelEditMode()">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
   <div class="col-lg-6">
-    <div *ngIf="appState == 'defaultMode'">
-      <h3>Add an item to the projects list</h3>
-      <form class="form-horizontal" (submit)="addproject()">
-        <fieldset>
-          <legend>New project</legend>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Project name</label>
-            <div class="col-lg-9">
-              <input #newproject class="form-control" type="text" name="projectName" [(ngModel)]="projectName">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Design cost</label>
-            <div class="col-lg-9">
-              <input #newproject class="form-control" type="text" name="designCost" [(ngModel)]="designCost">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Construction cost</label>
-            <div class="col-lg-9">
-              <input #newproject class="form-control" type="text" name="constructionCost" [(ngModel)]="constructionCost">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Project type</label>
-            <div class="col-lg-9">
-              <select class="form-control" name="projectType" [(ngModel)]="projectType">
-          <option [ngValue]="1">1</option>
-          <option [ngValue]="2">2</option>
-          <option [ngValue]="3">3</option>
-        </select>
-              <br>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-              <button type="reset" class="btn btn-default">Cancel</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-    <div *ngIf="appState == 'editMode'">
-      <h3>Add an item to the projects list</h3>
-      <form class="form-horizontal" (submit)="updateproject()" (cancel)="cancelEditMode()">
-        <fieldset>
-          <legend>Edit project</legend>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Project name</label>
-            <div class="col-lg-9">
-              <input #newproject class="form-control" type="text" name="projectName" [(ngModel)]="projectName">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Design cost</label>
-            <div class="col-lg-9">
-              <input #newproject class="form-control" type="text" name="designCost" [(ngModel)]="designCost">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Construction cost</label>
-            <div class="col-lg-9">
-              <input #newproject class="form-control" type="text" name="constructionCost" [(ngModel)]="constructionCost">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Project type</label>
-            <div class="col-lg-9">
-              <select class="form-control" name="projectType" [(ngModel)]="projectType">
-          <option [ngValue]="1">1</option>
-          <option [ngValue]="2">2</option>
-          <option [ngValue]="3">3</option>
-        </select>
-              <br>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-              <button type="reset" class="btn btn-default" (click)="cancelEditMode()">Cancel</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-</div>
-
-
-<div class="col-lg-6">
-  <h3>Displayed list</h3>
-  <legend>Projects list</legend>
-  <div class="panel-group">
-    <div *ngFor="let project of projects | paginate: { itemsPerPage: 5, currentPage: projectsListPage, id: 'projectsList' }; let i = index" 
-    class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" [attr.href]="'#accordion'+i">
+    <h3>Displayed list</h3>
+    <legend>Projects list</legend>
+    <div class="panel-group">
+      <div *ngFor="let project of projects | paginate: { itemsPerPage: 5, currentPage: projectsListPage, id: 'projectsList' }; let i = index"
+        class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" [attr.href]="'#accordion'+i">
         {{project.name}}</a>
-        <div class="pull-right">
-        <button class="btn btn-primary btn-sm" (click)="editproject(project)">Edit</button>
-        <button class="btn btn-danger btn-sm" (click)="deleteproject(project.name)">Delete</button>
+            <div class="pull-right">
+              <button class="btn btn-primary btn-sm" (click)="editproject(project)">Edit</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteproject(project.name)">Delete</button>
+            </div>
+          </h4>
         </div>
-        </h4>
-      </div>
-      <div [attr.id]="'accordion'+i" class="panel-collapse collapse">
-        <div class="panel-body">
-          <p>Design cost: {{project.designCost}}</p>
-          <p>Construction cost: {{project.constructionCost}}</p>
-          <p>Project type: {{project.type}}</p>
+        <div [attr.id]="'accordion'+i" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p>Design cost: {{project.designCost}}</p>
+            <p>Construction cost: {{project.constructionCost}}</p>
+            <p>Project type: {{project.type}}</p>
+          </div>
         </div>
       </div>
     </div>
+    <div class="has-text-centered">
+      <pagination-controls (pageChange)="projectsListPage = $event" id="projectsList"></pagination-controls>
+    </div>
   </div>
-  <div class="has-text-centered">
-  <pagination-controls (pageChange)="projectsListPage = $event" id = "projectsList"></pagination-controls>
-  </div>
-</div>
 </div>
 
 <div class="row">
-<div class="col-lg-12">
-  <h3>Web service interactions</h3>
-  <legend>Getting 100 instances from WS</legend>
-  <div class="panel-group">
-    <div *ngFor="let post of allPosts | paginate: { itemsPerPage: 10, currentPage: wsListPage, id: 'wsList' }; let j = index"
-     class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" [attr.href]="'#postAccordion'+j">
+  <div class="col-lg-12">
+    <h3>Web service interactions</h3>
+    <legend>Getting 100 instances from WS</legend>
+    <div class="panel-group">
+      <div *ngFor="let post of allPosts | paginate: { itemsPerPage: 10, currentPage: wsListPage, id: 'wsList' }; let j = index"
+        class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" [attr.href]="'#postAccordion'+j">
         {{post.title}}</a>
-        </h4>
+          </h4>
+        </div>
+        <div [attr.id]="'postAccordion'+j" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p>Post id: {{post.id}}</p>
+            <p>Post body: {{post.body}}</p>
+          </div>
+        </div>
       </div>
-      <div [attr.id]="'postAccordion'+j" class="panel-collapse collapse">
-        <div class="panel-body">
-          <p>Post id: {{post.id}}</p>
-          <p>Post body: {{post.body}}</p>
+
+    </div>
+    <div class="has-text-centered">
+      <pagination-controls (pageChange)="wsListPage = $event" id="wsList"></pagination-controls>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-6">
+      <h3>Get an item from the web service</h3>
+      <form class="form-horizontal" (submit)="getPostById()">
+        <fieldset>
+          <legend>Get one post by id</legend>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">id</label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="postId" [(ngModel)]="postId">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button type="reset" class="btn btn-default" (click)="cancelGetPostByIdForm()">Cancel</button>
+              <button type="submit" class="btn btn-primary">Get post</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <!--TODO: Fix UI -->
+    <div  *ngIf="specificPostById !== undefined" class="col-lg-6">
+      <h3>Resulted post</h3>
+      <div class="panel-group">
+        <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" [attr.href]="'#specificPostAccordion'">
+        {{specificPostById.title}}</a>
+          </h4>
+        </div>
+        <div [attr.id]="specificPostAccordion" data-parent="#accordion" class="panel-collapse collapse">
+          <div class="panel-body">
+            <p>Post id: {{specificPostById.id}}</p>
+            <p>Post body: {{specificPostById.body}}</p>
+          </div>
+        </div>
         </div>
       </div>
     </div>
-    
-  </div>
-  <div class="has-text-centered">
-  <pagination-controls (pageChange)="wsListPage = $event" id = "wsList"></pagination-controls>
-  </div>
-</div>
+
+
 </div>
