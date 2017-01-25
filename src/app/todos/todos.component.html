@@ -167,46 +167,48 @@
 
 
 <div class="row">
-    <div class="col-lg-6">
-      <h3>Get an item from the web service</h3>
-      <form class="form-horizontal" (submit)="getPostById()">
-        <fieldset>
-          <legend>Get one post by id</legend>
-          <div class="form-group">
-            <label class="col-lg-3 control-label">id</label>
-            <div class="col-lg-9">
-              <input class="form-control" type="text" name="postId" [(ngModel)]="postId">
-            </div>
+  <div class="col-lg-6">
+    <h3>Get an item from the web service</h3>
+    <form class="form-horizontal" (submit)="getPostById()">
+      <fieldset>
+        <legend>Get one post by id</legend>
+        <div class="form-group">
+          <label class="col-lg-3 control-label">id</label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" name="postId" [(ngModel)]="postId">
           </div>
-          <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-              <button type="reset" class="btn btn-default" (click)="cancelGetPostByIdForm()">Cancel</button>
-              <button type="submit" class="btn btn-primary">Get post</button>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <div *ngIf="showPBForOneItem == true" class="progress progress-striped active">
+              <div class="progress-bar" style="width: 100%"></div>
             </div>
+            <button type="reset" class="btn btn-default" (click)="cancelGetPostByIdForm()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Get post</button>
           </div>
-        </fieldset>
-      </form>
-    </div>
-    <!--TODO: Fix UI -->
-    <div  *ngIf="specificPostById !== undefined" class="col-lg-6">
-      <h3>Resulted post</h3>
-      <div class="panel-group">
-        <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" [attr.href]="'#specificPostAccordion'">
+        </div>
+      </fieldset>
+    </form>
+</div>
+<div *ngIf="specificPostById !== undefined" class="col-lg-6">
+  <h3>Resulted post</h3>
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" href="#specificPostAccordion">
         {{specificPostById.title}}</a>
-          </h4>
-        </div>
-        <div [attr.id]="specificPostAccordion" data-parent="#accordion" class="panel-collapse collapse">
-          <div class="panel-body">
-            <p>Post id: {{specificPostById.id}}</p>
-            <p>Post body: {{specificPostById.body}}</p>
-          </div>
-        </div>
+        </h4>
+      </div>
+      <div id="specificPostAccordion" data-parent="#accordion" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>Post id: {{specificPostById.id}}</p>
+          <p>Post body: {{specificPostById.body}}</p>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
 
 </div>

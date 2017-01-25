@@ -20,6 +20,8 @@ export class TodosComponent implements OnInit {
   /////////////////////////POSTS attributes
   allPosts: Post[];
   specificPostById: Post;
+  postId: string;
+  showPBForOneItem: boolean = false;
 
 
 
@@ -91,11 +93,18 @@ export class TodosComponent implements OnInit {
   }
 
   getPostById(){
+    
     this.ngZone.runOutsideAngular(() => {
-      this._postsService.getPostById('1').subscribe(post => this.ngZone.run(() =>
-      { this.specificPostById = post; 
-        console.log(this.specificPostById)}));
+      
+      this._postsService.getPostById(this.postId).subscribe(post => this.ngZone.run(() =>
+      { this.showPBForOneItem = true;
+        this.specificPostById = post; 
+        console.log(this.specificPostById)
+      this.showPBForOneItem = false;
+    }));
+        
     })
+    
   }
 }
 
